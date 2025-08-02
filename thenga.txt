@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" 
+  content="width=device-width,
+  initial-scale=1.0"/>
+  <title>THE THENGA SHAM </title>
+  <style>
+    @import
+ url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Chewy', cursive;
+      background-color:#fffbe6;
+    }
+      #bgVideo{
+      position:fixed;
+      right:0;
+      bottom:0;
+      min-width:100%;
+      min-height:100%;
+      object-fit:cover;
+      z-index:-2;
+    }
+
+    /* Preface Screen */
+    #preface {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fff44f 0%, b2ff59 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #4a2600;
+      z-index: 10;
+    }
+
+    #preface h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px #00000030;
+      animation: pop 1s ease-in-out infinite alternate;
+    }
+
+    #startBtn {
+      font-family: 'chewy', cursive;
+      font-size: 28px;
+      padding: 16px 28px;
+      background: linear-gradient(45deg, #ffcc00, #ff6f61);   
+      color: #4a2600;
+      border: 4px dashed #4a2600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow:0 0 15px #f5a623;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    #startBtn:hover {
+      transform: scale (1.1) rotate(-3deg);
+      background: linear-gradient(45deg, #ffb347, #ff6f61);
+    }
+
+    /* Countdown */
+    #countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      color: #ff4081;
+      display: none;
+      z-index: 9;
+    }
+
+    #megaCoconut {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 100px;
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.4s ease;
+      z-index: 8;
+    }
+
+    /* Main Game UI */
+    #gameContainer {
+      display: none;
+    }
+
+    .coconut {
+      position: absolute;
+      font-size: 4rem;
+      user-select: none;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: popIn 0.3s ease forwards;
+    }
+
+    @keyframes popIn {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    #counter {
+      position:fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    #resetBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 8px 14px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    #resetBtn:hover {
+      background-color: #e60000;
+    }
+
+    #thengaMessage {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      font-family: 'Chewy', cursive;
+      font-weight: bold;
+      color: #8b4513;
+      display: none;
+      background: #fff8dc;
+      padding: 20px;
+      border: 4px dashed #8b4513;
+      border-radius: 12px;
+      text-align: center;
+      z-index: 999;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <!--Ocean Background Video-->
+  <video autoplay muted loop id="bgVideo">
+  <source
+src="httpss://cdn.pixabay.com/video/2017/11/06/9795-241846942_large.mp4"
+type="video/mp4">
+ </video>
+
+ <!--Sea Sound-->
+ <audio id="seaSound"
+src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_eb3cbcce6.mp3
+?filename=beach-waves-ambient-110233.mp3"loop></audio>
+
+  <!-- Preface Screen -->
+  <div id="preface">
+    <h1>THE THENGA SHAM</h1>
+    <button id="startBtn">Let’s go thengaa 🥥
+</button>
+  </div>
+
+  <!-- Countdown -->
+  <div id="countdown"></div>
+  <div id="megaCoconut">🥥</div>
+
+  <!-- Main Game Screen -->
+  <div id="gameContainer">
+    <div id="counter">Coconuts: 0</div>
+    <button id="resetBtn">Reset</button>
+    <div id="thengaMessage">No more THENGAs left to give!</div>
+  </div>
+
+  <script>
+    let count = 0;
+    const coconutLimit = 20;
+    const counter = document.getElementById("counter");
+    const resetBtn = document.getElementById("resetBtn");
+    const thengaMessage = document.getElementById("thengaMessage");
+    const gameContainer = document.getElementById("gameContainer");
+    const preface = document.getElementById("preface");
+    const countdown = document.getElementById("countdown");
+    const megaCoconut = document.getElementById("megaCoconut");
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      preface.style.display = "none";
+      seaSound.play().catch(()=>
+    console.log("Autoplay blocked"));
+      let i = 3;
+      countdown.style.display = "block";
+      countdown.textContent = i;
+
+      const interval = setInterval(() => {
+        i--;
+        if (i > 0){
+          countdown.textContent = i;
+        } else if (i === 0) {
+          countdown.style.display = "none";
+          megaCoconut.style.opacity = 1;
+          megaCoconut.style.transform = "translate(-50%, -50%) scale(20)";
+        } else {
+          clearInterval(interval);
+          megaCoconut.style.display = "none";
+          gameContainer.style.display = "block";
+        }
+      }, 1000);
+    });
+
+    document.addEventListener("click",function (e) {
+      if (e.target === resetBtn || gameContainer.style.display !== "block") return;
+
+      if (count >= coconutLimit) return;
+
+      count++;
+      counter.textContent = `Coconuts: ${count}`;
+
+   const coconut = document.createElement("div");
+      coconut.className = "coconut";
+      coconut.textContent = "🥥";
+      coconut.style.left = `${e.clientX}px`;
+      coconut.style.top = `${e.clientY}px`;
+
+      document.body.appendChild(coconut);
+
+      if (count === coconutLimit) {
+        thengaMessage.style.display = "block";
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      count = 0;
+      counter.textContent = "Coconuts: 0";
+   document.querySelectorAll(".coconut").forEach(c => c.remove());
+      thengaMessage.style.display = "none";
+    });
+  </script>
+</body>
+</html>
