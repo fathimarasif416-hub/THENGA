@@ -9,8 +9,8 @@
 
 
 ### Team Members
-- Team Lead: Fathima T.M - [Albertian Institute of Science And Technology
-- Member 2: Jees Maria Wilson - [Albertian Institute of Science And Technology
+- Team Lead: Fathima T.M - Albertian Institute of Science And Technology
+- Member 2: Jees Maria Wilson - Albertian Institute of Science And Technology
 
 ### Project Description
 Its the most wastefull way to waste the already non existing time of mallus. 
@@ -24,7 +24,7 @@ How are you solving it? Keep it fun!
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- Html,Css,Javascript
+- Html, Css, Javascript
 - Front-end
 - Nil
 - Notepad
