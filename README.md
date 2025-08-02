@@ -1,33 +1,33 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [The Thenga Sham]
+# The Thenga Sham
 
 
 ## Basic Details
-### Team Name: [DORA]
+### Team Name: DORA
 
 
 ### Team Members
-- Team Lead: [Fathima T.M] - [Albertian Institute of Science And Technology]
-- Member 2: [Jees Maria Wilson] - [Albertian Institute of Science And Technology]
+- Team Lead: Fathima T.M - [Albertian Institute of Science And Technology
+- Member 2: Jees Maria Wilson - [Albertian Institute of Science And Technology
 
 ### Project Description
-[Its the most wastefull way to waste the already non existing time of mallus. ]
+Its the most wastefull way to waste the already non existing time of mallus. 
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+What ridiculous problem are you solving?
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+How are you solving it? Keep it fun!
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- Html,Css,Javascript
+- Front-end
+- Nil
+- Notepad
 
 For Hardware:
 - [List main components]
@@ -87,9 +87,8 @@ For Hardware:
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Fathima T M
+- Jees Maria
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
